@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "group",
+  "type": "object",
+  "properties": {
+    "marker": {
+      "type": "string",
+      "minLength": 2
+    },
+    "model": {
+      "type": "string",
+      "minLength": 2
+    },
+    "purchaseDate": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "marker",
+    "model",
+    "purchaseDate"
+  ],
+  "additionalProperties": false
+}
