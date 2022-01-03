@@ -3,7 +3,7 @@
   "title": "group",
   "type": "object",
   "properties": {
-    "marker": {
+    "maker": {
       "type": "string",
       "minLength": 2
     },
@@ -13,12 +13,17 @@
     },
     "purchaseDate": {
       "type": "string"
+    },
+    "year": {
+      "type": "number",
+      "minLength": 2
     }
   },
   "required": [
-    "marker",
+    "maker",
     "model",
-    "purchaseDate"
+    "purchaseDate",
+    "year"
   ],
   "additionalProperties": false
 }

@@ -1,6 +1,7 @@
 export interface CarUpdate {
-  marker: string
+  maker: string
   purchaseDate: string
   model: string
+  year: number
   purchased: boolean
 }

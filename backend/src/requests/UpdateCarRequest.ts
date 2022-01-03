@@ -2,7 +2,9 @@
  * Fields in a request to update a single TODO item.
  */
 export interface UpdateCarRequest {
-  marker: string
+  maker: string
   purchaseDate: string
   model: string
+  year: number
+  purchased: boolean
 }

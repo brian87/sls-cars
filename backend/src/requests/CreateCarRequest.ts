@@ -4,7 +4,7 @@
 export interface CreateCarRequest {
   name: string
   dueDate: string
-  marker: string
+  maker: string
   year: number
   model: string
 }

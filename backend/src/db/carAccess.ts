@@ -77,15 +77,16 @@ export class CarsAccess {
         userId: userId,
         carId: carId
       },
-      UpdateExpression: 'set #marker = :marker, purchaseDate = :purchaseDate, model = :model, purchased =:purchased',
+      UpdateExpression: 'set #maker = :maker, purchaseDate = :purchaseDate, model = :model, purchased = :purchased, year = :year',
       ExpressionAttributeNames: {
-        "#marker": "marker"
+        "#maker": "maker"
       },
       ExpressionAttributeValues: {
-        ":marker": carUpdate.marker,
+        ":maker": carUpdate.maker,
         ":purchaseDate": carUpdate.purchaseDate,
         ":model": carUpdate.model,
-        ":purchased": carUpdate.purchased
+        ":purchased": carUpdate.purchased,
+        ":year": carUpdate.year
       }
     }).promise()   
   }
