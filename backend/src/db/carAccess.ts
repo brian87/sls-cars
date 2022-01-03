@@ -102,20 +102,20 @@ export class CarsAccess {
     }).promise()    
   }
 
-//   async updateAttachmentUrl(todoId: string, userId: string, attachmentUrl: string) {
-//     logger.info(`Updating attachment URL for todo ${todoId} in ${this.todosTable}`)
+  async updateAttachmentUrl(carId: string, userId: string, attachmentUrl: string) {
+    logger.info(`Updating attachment URL for todo ${carId} in ${this.carsTable}`)
 
-//     await this.docClient.update({
-//       TableName: this.todosTable,
-//       Key: {
-//         userId: userId,
-//         todoId: todoId
-//       },
-//       UpdateExpression: 'set attachmentUrl = :attachmentUrl',
-//       ExpressionAttributeValues: {
-//         ':attachmentUrl': attachmentUrl
-//       }
-//     }).promise()
-//   }
+    await this.docClient.update({
+      TableName: this.carsTable,
+      Key: {
+        userId: userId,
+        todoId: carId
+      },
+      UpdateExpression: 'set attachmentUrl = :attachmentUrl',
+      ExpressionAttributeValues: {
+        ':attachmentUrl': attachmentUrl
+      }
+    }).promise()
+  }
 
 }

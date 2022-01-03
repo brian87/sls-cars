@@ -1,5 +1,5 @@
 import { CarsAccess  } from '../db/carAccess'
-// import { AttachmentUtils } from './attachmentUtils';
+import { AttachmentUtils } from '../db/attachmentUtils';
 import { CarItem } from '../models/CarItem'
 import { CreateCarRequest } from '../requests/CreateCarRequest'
 import { UpdateCarRequest } from '../requests/UpdateCarRequest'
@@ -11,7 +11,7 @@ import { CarUpdate } from '../models/CarUpdate'
 const logger = createLogger('cars')
 
 const carsAccess  = new CarsAccess ()
-// const attachmentUtils = new AttachmentUtils()
+const attachmentUtils = new AttachmentUtils()
 
 export async function getCars(userId: string): Promise<CarItem[]> {
     logger.info(`Retrieving all cars for user ${userId}`, { userId })
@@ -71,31 +71,31 @@ export async function createCar(userId: string, createCarRequest: CreateCarReque
     carsAccess.deleteCarItem(carId, userId)
   }
 
-//   export async function updateAttachmentUrl(userId: string, todoId: string, attachmentId: string) {
-//     logger.info(`Generating attachment URL for attachment ${attachmentId}`)
+  export async function updateAttachmentUrl(userId: string, carId: string, attachmentId: string) {
+    logger.info(`Generating attachment URL for attachment ${attachmentId}`)
   
-//     const attachmentUrl = await attachmentUtils.getAttachmentUrl(attachmentId)
+    const attachmentUrl = await attachmentUtils.getAttachmentUrl(attachmentId)
   
-//     logger.info(`Updating todo ${todoId} with attachment URL ${attachmentUrl}`, { userId, todoId })
+    logger.info(`Updating car ${carId} with attachment URL ${attachmentUrl}`, { userId, carId })
   
-//     const item = await todosAccess.getTodoItem(todoId, userId)
+    const item = await carsAccess.getCarItem(carId, userId)
   
-//     if (!item)
-//       throw new Error('Item not found')  // FIXME: 404?
+    if (!item)
+      throw new Error('Item not found')  // FIXME: 404?
   
-//     if (item.userId !== userId) {
-//       logger.error(`User ${userId} does not have permission to update todo ${todoId}`)
-//       throw new Error('User is not authorized to update item')  // FIXME: 403?
-//     }
+    if (item.userId !== userId) {
+      logger.error(`User ${userId} does not have permission to update car ${carId}`)
+      throw new Error('User is not authorized to update item')  // FIXME: 403?
+    }
   
-//     await todosAccess.updateAttachmentUrl(todoId, userId, attachmentUrl)
-//   }
+    await carsAccess.updateAttachmentUrl(carId, userId, attachmentUrl)
+  }
 
-//   export async function generateUploadUrl(attachmentId: string): Promise<string> {
-//     logger.info(`Generating upload URL for attachment ${attachmentId}`)
+  export async function generateUploadUrl(attachmentId: string): Promise<string> {
+    logger.info(`Generating upload URL for attachment ${attachmentId}`)
   
-//     const uploadUrl = await attachmentUtils.getUploadUrl(attachmentId)
+    const uploadUrl = await attachmentUtils.getUploadUrl(attachmentId)
   
-//     return uploadUrl
-//   }
+    return uploadUrl
+  }
 
