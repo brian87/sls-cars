@@ -48,9 +48,9 @@ custom:
         - name: CreateCarRequest
           contentType: application/json
           schema: ${file(models/create-car-model.json)}
-        # - name: UpdateTodoRequest
-        #   contentType: application/json
-        #   schema: ${file(models/update-todo-model.json)}      
+        - name: UpdateCarRequest
+          contentType: application/json
+          schema: ${file(models/update-car-model.json)}      
 
 functions:
 

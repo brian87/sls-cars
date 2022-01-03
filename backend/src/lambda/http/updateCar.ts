@@ -1,28 +1,28 @@
-// import 'source-map-support/register'
+import 'source-map-support/register'
 
-// import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
+import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
 
-// import { updateTodo } from '../../helpers/todos'
-// import { UpdateTodoRequest } from '../../requests/UpdateTodoRequest'
-// import { createLogger } from '../../utils/logger'
-// import { getUserId } from '../utils'
+import { updateCar } from '../../services/carService'
+import { UpdateCarRequest } from '../../requests/UpdateCarRequest'
+import { createLogger } from '../../utils/logger'
+import { getUserId } from '../utils'
 
-// const logger = createLogger('updateTodo')
+const logger = createLogger('updateTodo')
 
-// export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-//   logger.info('Processing updateTodo event', { event })
+export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+  logger.info('Processing updateTodo event', { event })
 
-//   const userId = getUserId(event)
-//   const todoId = event.pathParameters.todoId
-//   const updatedTodo: UpdateTodoRequest = JSON.parse(event.body)
+  const userId = getUserId(event)
+  const carId = event.pathParameters.carId
+  const updatedCar: UpdateCarRequest = JSON.parse(event.body)
 
-//   await updateTodo(userId, todoId, updatedTodo)
+  await updateCar(userId, carId, updatedCar)
 
-//   return {
-//     statusCode: 200,
-//     headers: {
-//       'Access-Control-Allow-Origin': '*'
-//     },
-//     body: ''
-//   }
-// }
+  return {
+    statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
+    body: ''
+  }
+}

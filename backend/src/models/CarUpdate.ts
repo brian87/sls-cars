@@ -1,5 +1,6 @@
 export interface CarUpdate {
-  name: string
-  dueDate: string
-  done: boolean
+  marker: string
+  purchaseDate: string
+  model: string
+  purchased: boolean
 }

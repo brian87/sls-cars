@@ -2,11 +2,11 @@ import { CarsAccess  } from '../db/carAccess'
 // import { AttachmentUtils } from './attachmentUtils';
 import { CarItem } from '../models/CarItem'
 import { CreateCarRequest } from '../requests/CreateCarRequest'
-import { UpdateCarRequest } from '../requests/UpdateRequest'
+import { UpdateCarRequest } from '../requests/UpdateCarRequest'
 import { createLogger } from '../utils/logger'
 import * as uuid from 'uuid'
 import * as createError from 'http-errors'
-import { TodoUpdate } from '../models/TodoUpdate'
+import { CarUpdate } from '../models/CarUpdate'
 
 const logger = createLogger('cars')
 
@@ -28,6 +28,7 @@ export async function createCar(userId: string, createCarRequest: CreateCarReque
       carId,
       createdAt: new Date().toISOString(),
       attachmentUrl: null,
+      purchased: false,
       ...createCarRequest
     }
   
@@ -51,7 +52,7 @@ export async function createCar(userId: string, createCarRequest: CreateCarReque
       throw new Error('User is not authorized to update item')  // FIXME: 403?
     }
   
-    carsAccess.updateCarItem(carId, userId, updateCarRequest as Car Update)
+    carsAccess.updateCarItem(carId, userId, updateCarRequest as CarUpdate)
   }
 
   export async function deleteCar(userId: string, carId: string) {

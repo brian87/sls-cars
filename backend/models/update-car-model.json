@@ -3,20 +3,24 @@
   "title": "group",
   "type": "object",
   "properties": {
-    "name": {
+    "marker": {
       "type": "string"
     },
-    "dueDate": {
+    "purchaseDate": {
       "type": "string"
     },
-    "done": {
+    "model": {
+      "type": "string"
+    },
+    "purchased": {
       "type": "boolean"
     }
   },
   "required": [
-    "name",
-    "dueDate",
-    "done"
+    "marker",
+    "purchaseDate",
+    "model",
+    "purchased"
   ],
   "additionalProperties": false
 }

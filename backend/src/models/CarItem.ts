@@ -4,9 +4,7 @@ export interface CarItem {
   carId: string
   createdAt: string
   marker: string
-  year: number
   model: string
-
-  // dueDate: string
+  purchased: boolean
   attachmentUrl?: string
 }
