@@ -4,14 +4,12 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult, APIGatewayProxyHandler } f
 import { getCars } from '../../services/carService'
 import { createLogger } from '../../utils/logger'
 
-
-//import { getTodosForUser as getTodosForUser } from '../../businessLogic/todos'
 import { getUserId } from '../utils';
 
 const logger = createLogger('getCars')
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  logger.info('Processing getTodos event', { event })
+  logger.info('Processing getCars event', { event })
 
   const userId = getUserId(event)
 

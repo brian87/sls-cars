@@ -20,7 +20,7 @@ export class CarsAccess {
     private readonly carsTable = process.env.CARS_TABLE,
   ) {}
 
-  async todoItemExists(carId: string, userId: string): Promise<boolean> {
+  async carItemExists(carId: string, userId: string): Promise<boolean> {
     const item = await this.getCarItem(carId, userId)
     return !!item
   }
@@ -69,7 +69,7 @@ export class CarsAccess {
   }
 
   async updateCarItem(carId: string, userId: string, carUpdate: CarUpdate) {
-    logger.info(`Updating todo item ${carId} in ${this.carsTable}`)
+    logger.info(`Updating car item ${carId} for user ${userId}: ${carUpdate.purchased}`)
 
     await this.docClient.update({
       TableName: this.carsTable,
@@ -77,18 +77,12 @@ export class CarsAccess {
         userId: userId,
         carId: carId
       },
-      UpdateExpression: 'set #maker = :maker, purchaseDate = :purchaseDate, model = :model, purchased = :purchased, year = :year',
-      ExpressionAttributeNames: {
-        "#maker": "maker"
-      },
+      UpdateExpression: 'set purchased = :purchased',
       ExpressionAttributeValues: {
-        ":maker": carUpdate.maker,
-        ":purchaseDate": carUpdate.purchaseDate,
-        ":model": carUpdate.model,
-        ":purchased": carUpdate.purchased,
-        ":year": carUpdate.year
-      }
-    }).promise()   
+        ':purchased': carUpdate.purchased      
+      },
+      ReturnValues: "UPDATED_NEW"
+      }).promise()   
   }
 
   async deleteCarItem(carId: string, userId: string) {
@@ -104,13 +98,13 @@ export class CarsAccess {
   }
 
   async updateAttachmentUrl(carId: string, userId: string, attachmentUrl: string) {
-    logger.info(`Updating attachment URL for todo ${carId} in ${this.carsTable}`)
+    logger.info(`Updating attachment URL for car ${carId} in ${this.carsTable}`)
 
     await this.docClient.update({
       TableName: this.carsTable,
       Key: {
         userId: userId,
-        todoId: carId
+        carId: carId
       },
       UpdateExpression: 'set attachmentUrl = :attachmentUrl',
       ExpressionAttributeValues: {

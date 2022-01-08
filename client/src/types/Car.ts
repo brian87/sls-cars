@@ -1,11 +1,9 @@
-
-export interface CarItem {
-  userId: string
+export interface Car {
   carId: string
-  createdAt: string
   maker: string
   model: string
   year: string
   purchased: boolean
+  createdAt: string
   attachmentUrl?: string
 }

@@ -32,7 +32,7 @@ export async function createCar(userId: string, createCarRequest: CreateCarReque
       ...createCarRequest
     }
   
-    logger.info(`Creating todo ${carId} for user ${userId}`, { userId, carId, carItem: newItem })
+    logger.info(`Creating car ${carId} for user ${userId}`, { userId, carId, carItem: newItem })
   
     await carsAccess.createCarItem(newItem)
   
@@ -40,7 +40,7 @@ export async function createCar(userId: string, createCarRequest: CreateCarReque
   }
 
   export async function updateCar(userId: string, carId: string, updateCarRequest: UpdateCarRequest) {
-    logger.info(`Updating todo ${carId} for user ${userId}`, { userId, carId, todoUpdate: updateCarRequest })
+    logger.info(`Updating car ${carId} for user ${userId}`, { userId, carId, carUpdate: updateCarRequest })
   
     const item = await carsAccess.getCarItem(carId, userId)
   
@@ -49,10 +49,10 @@ export async function createCar(userId: string, createCarRequest: CreateCarReque
   
     if (item.userId !== userId) {
       logger.error(`User ${userId} does not have permission to update car ${carId}`)
-      throw new Error('User is not authorized to update item')  // FIXME: 403?
+      throw new Error('User is not authorized to update item')  
     }
   
-    carsAccess.updateCarItem(carId, userId, updateCarRequest as CarUpdate)
+    return await carsAccess.updateCarItem(carId, userId, {purchased:updateCarRequest.purchased })
   }
 
   export async function deleteCar(userId: string, carId: string) {
@@ -68,7 +68,7 @@ export async function createCar(userId: string, createCarRequest: CreateCarReque
       throw new Error('User is not authorized to delete item')  // FIXME: 403?
     }
   
-    carsAccess.deleteCarItem(carId, userId)
+    return await carsAccess.deleteCarItem(carId, userId)
   }
 
   export async function updateAttachmentUrl(userId: string, carId: string, attachmentId: string) {

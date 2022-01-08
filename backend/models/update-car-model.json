@@ -3,10 +3,10 @@
   "title": "group",
   "type": "object",
   "properties": {
-    "maker": {
-      "type": "string"
+    "purchased": {
+      "type": "boolean"
     },
-    "purchaseDate": {
+    "maker": {
       "type": "string"
     },
     "model": {
@@ -14,17 +14,9 @@
     },
     "year": {
       "type": "number"
-    },
-    "purchased": {
-      "type": "boolean"
     }
   },
-  "required": [
-    "maker",
-    "purchaseDate",
-    "model",
-    "year",
-    "purchased"
-  ],
+  
+  
   "additionalProperties": false
 }

@@ -7,10 +7,10 @@ import { UpdateCarRequest } from '../../requests/UpdateCarRequest'
 import { createLogger } from '../../utils/logger'
 import { getUserId } from '../utils'
 
-const logger = createLogger('updateTodo')
+const logger = createLogger('updateCar')
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  logger.info('Processing updateTodo event', { event })
+  logger.info('Processing updateCar event', { event })
 
   const userId = getUserId(event)
   const carId = event.pathParameters.carId

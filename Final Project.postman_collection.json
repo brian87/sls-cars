@@ -10,6 +10,26 @@
 			"item": [
 				{
 					"name": "Get all cars",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -45,7 +65,7 @@
 							"script": {
 								"exec": [
 									"var body = pm.response.json();",
-									"pm.collectionVariables.set(\"todoId\", body.item.todoId);",
+									"pm.collectionVariables.set(\"carId\", body.item.carId);",
 									""
 								],
 								"type": "text/javascript"
@@ -69,7 +89,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"purchaseDate\": \"2019-06-11\",\n    \"marker\": \"Toyota\",\n    \"model\": \"Yaris\"\n\n}"
+							"raw": "{\n    \"maker\": \"Toyota\",\n    \"model\": \"Yaris\",\n    \"year\": \"2023\"\n}"
 						},
 						"url": {
 							"raw": "https://{{apiId}}.execute-api.eu-west-1.amazonaws.com/dev/cars",
@@ -108,10 +128,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Change the world\",\n\t\"dueDate\": \"2019-12-11\",\n\t\"done\": true\n}"
+							"raw": "{\n    \"purchased\": false\n}"
 						},
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.eu-west-1.amazonaws.com/dev/todos/{{todoId}}",
+							"raw": "https://{{apiId}}.execute-api.eu-west-1.amazonaws.com/dev/cars/{{carId}}",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
@@ -122,8 +142,8 @@
 							],
 							"path": [
 								"dev",
-								"todos",
-								"{{todoId}}"
+								"cars",
+								"{{carId}}"
 							]
 						}
 					},
@@ -151,7 +171,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.eu-west-1.amazonaws.com/dev/cars/0ef68612-58d2-4a3a-9560-d7126b970e33",
+							"raw": "https://{{apiId}}.execute-api.eu-west-1.amazonaws.com/dev/cars/{{carId}}",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
@@ -163,7 +183,7 @@
 							"path": [
 								"dev",
 								"cars",
-								"0ef68612-58d2-4a3a-9560-d7126b970e33"
+								"{{carId}}"
 							]
 						}
 					},
@@ -180,12 +200,8 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "https://{{apiId}}.execute-api.eu-west-1.amazonaws.com/dev/todos/{{todoId}}/attachment",
+							"raw": "https://{{apiId}}.execute-api.eu-west-1.amazonaws.com/dev/cars/{{carId}}/attachment",
 							"protocol": "https",
 							"host": [
 								"{{apiId}}",
@@ -196,8 +212,8 @@
 							],
 							"path": [
 								"dev",
-								"todos",
-								"{{todoId}}",
+								"cars",
+								"{{carId}}",
 								"attachment"
 							]
 						}
@@ -260,6 +276,10 @@
 		},
 		{
 			"key": "todoId",
+			"value": ""
+		},
+		{
+			"key": "carId",
 			"value": ""
 		}
 	]

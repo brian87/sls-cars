@@ -11,18 +11,14 @@
       "type": "string",
       "minLength": 2
     },
-    "purchaseDate": {
-      "type": "string"
-    },
     "year": {
-      "type": "number",
+      "type": "string",
       "minLength": 2
     }
   },
   "required": [
     "maker",
     "model",
-    "purchaseDate",
     "year"
   ],
   "additionalProperties": false

@@ -42,7 +42,7 @@ custom:
       api:
         info:
           version: 1.0.0
-          title: Todo API
+          title: Car API
           description: Serverless API for a cars app
       models:
         - name: CreateCarRequest
@@ -159,7 +159,7 @@ resources:
         RestApiId:
           Ref: ApiGatewayRestApi
 
-    TodosTable:
+    CarsTable:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:
