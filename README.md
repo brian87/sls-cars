@@ -1,22 +1,22 @@
 # Serverless Car collection based App
 Github link: https://github.com/brian87/sls-cars
-This project is a simple spending tracker application using AWS Lambda combined with Serverless Framework. It used AWS DynamoDB for storing data and AWS S3 to store image. Also auth0 service is used for authentication of the user.
+This project is a simple Car collection application using AWS Lambda combined with Serverless Framework. It used AWS DynamoDB for storing data and AWS S3 to store image. Also auth0 service is used for authentication of the user.
 ## Github link
 https://github.com/brian87/sls-cars
 # Functionality of the application
 
-This application allows to perform CRUD operation on Spending items. Each Spending item can also optinally have an attachment image. Each authenticated user can access only his/her own created spending items.
+This application allows to perform CRUD operation on Car items. Each Car item can also optinally have an attachment image. Each authenticated user can access only his/her own created Car items.
 
-# Spending items
+# Car items
 
-The application stores Spending items, and each item contains the following fields:
+The application stores Car items, and each item contains the following fields:
 
 * `userId` (string) - user id of authenticated user
-* `createdAt` (string) - date and time when an item was created
-* `model` (string) - name of a Spending item (e.g. "Yaris")
-* `maker` (string) - name of a Spending item (e.g. "Toyota")
-* `year` (string) - name of a Spending item (e.g. "2022")
-* `attachmentUrl` (string) (optional) - a URL pointing to an image attached to a spending item
+* `carId` (string) - car id
+* `model` (string) - model of a Car item (e.g. "Yaris")
+* `maker` (string) - maker of a Car item (e.g. "Toyota")
+* `year` (string) - year of a Car item (e.g. "2022")
+* `attachmentUrl` (string) (optional) - a URL pointing to an image attached to a Car item
 
 # Frontend
 
@@ -57,7 +57,7 @@ npm install
 npm run start
 ```
 
-This should start a development server with the React application that will interact with the serverless spending tracker react app.
+This should start a development server with the React application that will interact with the serverless Car tracker react app.
 
 # Postman collection
 
