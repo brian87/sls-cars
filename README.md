@@ -1,31 +1,72 @@
-### Amazon Web Services (AWS)
+# Serverless Car collection based App
+Github link: https://github.com/brian87/sls-cars
+This project is a simple spending tracker application using AWS Lambda combined with Serverless Framework. It used AWS DynamoDB for storing data and AWS S3 to store image. Also auth0 service is used for authentication of the user.
+## Github link
+https://github.com/brian87/sls-cars
+# Functionality of the application
 
-An AWS account is required to deploy the application.
+This application allows to perform CRUD operation on Spending items. Each Spending item can also optinally have an attachment image. Each authenticated user can access only his/her own created spending items.
 
-### Auth0 R256
+# Spending items
 
-Auth0 is used for authentication and an Auth0 application should be created with asymmetrically encrypted keys (RS256).
+The application stores Spending items, and each item contains the following fields:
 
-## Getting started
+* `userId` (string) - user id of authenticated user
+* `createdAt` (string) - date and time when an item was created
+* `model` (string) - name of a Spending item (e.g. "Yaris")
+* `maker` (string) - name of a Spending item (e.g. "Toyota")
+* `year` (string) - name of a Spending item (e.g. "2022")
+* `attachmentUrl` (string) (optional) - a URL pointing to an image attached to a spending item
 
-### Backend
+# Frontend
 
-To build and deploy the application, first edit the `backend/serverless.yml` file to set the appropriate AWS and Auth0 parameters, then run the following commands:
+The `client` folder contains a web application that can use the API that should be developed in the project.
 
-1. cd to the backend folder: `cd backend`
-2. Install dependencies: `npm install`
-3. Build and deploy to AWS: `sls deploy -v`
+This frontend should work with your serverless application once it is developed, you don't need to make any changes to the code. The only file that you need to edit is the `config.ts` file in the `client` folder. This file configures your client application just as it was done in the course and contains an API endpoint and Auth0 configuration:
 
-### Frontend
+```ts
+const apiId = '...' API Gateway id
+export const apiEndpoint = `https://${apiId}.execute-api.eu-west-1.amazonaws.com/dev`
 
-To run the client application, first edit the `client/src/config.ts` file to set the appropriate AWS and Auth0 parameters, then run the following commands:
+export const authConfig = {
+  domain: '...',    // Domain from Auth0
+  clientId: '...',  // Client id from an Auth0 application
+  callbackUrl: 'http://localhost:3000/callback'
+}
+```
 
-1. cd to the client folder: `cd client`
-2. Install dependencies: `npm install`
-3. Run the client application: `npm run start`
+# How to run the application
 
-This should start a development server with the React application that will interact with the serverless TODO application.
+## Backend
 
-### Postman collection
+To deploy an application run the following commands:
 
-A Postman collection is available in the root folder of the project, as an alternative way to test the API.
+```
+cd backend
+npm install
+sls deploy -v
+```
+
+## Frontend
+
+To run a client application first edit the `client/src/config.ts` file to set correct parameters. And then run the following commands:
+
+```
+cd client
+npm install
+npm run start
+```
+
+This should start a development server with the React application that will interact with the serverless spending tracker react app.
+
+# Postman collection
+
+An alternative way to test your API, you can use the Postman collection that contains sample requests. You can find a Postman collection in this project. To import this collection, do the following.
+
+Import the collection: Final Project.postman_collection.json
+
+# Application screenshot
+
+![Alt text](images/CarsApp.png?raw=true "Image 1")
+
+

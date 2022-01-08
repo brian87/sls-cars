@@ -17,13 +17,11 @@ let cachedCertificate: string
 export const handler = async (event: CustomAuthorizerEvent): Promise<CustomAuthorizerResult> => {
   logger.info('Authorizing a user', event.authorizationToken)
   try {
-    //const jwtToken = await verifyToken(event.authorizationToken)
-    const token = getToken(event.authorizationToken)
-    const jwtToken: Jwt = decode(token, { complete: true }) as Jwt
+    const jwtToken = await verifyToken(event.authorizationToken)
     logger.info('User was authorized', jwtToken)
 
     return {
-      principalId: jwtToken.payload.sub,
+      principalId: jwtToken.sub,
       policyDocument: {
         Version: '2012-10-17',
         Statement: [
